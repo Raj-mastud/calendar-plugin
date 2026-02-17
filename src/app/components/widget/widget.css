@@ -1,0 +1,18 @@
+.panel {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+
+  transform: translateX(120%);
+  transition: transform 0.3s ease;
+}
+
+.panel.open {
+  transform: translateX(0);
+}

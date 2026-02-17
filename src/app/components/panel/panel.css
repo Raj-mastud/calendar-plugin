@@ -1,0 +1,28 @@
+.panel {
+  width: 380px;
+  max-height: 520px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  position: fixed;          /* VERY IMPORTANT */
+  bottom: 90px;             /* slightly above button */
+  right: 20px;   
+  overflow-x: hidden;
+  height: 520px;
+}
+
+/* 🔥 VERY IMPORTANT — Angular host fix */
+app-calendar {
+  flex-shrink: 0;   /* calendar keeps its natural height */
+}
+
+app-notes {
+  flex: 1;          /* notes takes remaining space */
+  display: flex;
+}

@@ -1,0 +1,17 @@
+<div 
+  class="panel" 
+  [class.open]="isOpen">
+
+  <app-calendar
+    (dateSelected)="onDateSelected($event)">
+  </app-calendar>
+
+  <app-notes
+    [selectedDate]="selectedDate">
+  </app-notes>
+
+</div>
+
+<button class="floating-btn" (click)="toggle()">
+  📅
+</button>

@@ -1,0 +1,14 @@
+<div class="panel">
+
+  <app-calendar
+    [notes]="notes"
+    (dateSelected)="onDateSelected($event)"
+    (monthChanged)="onMonthChanged()">
+  </app-calendar>
+
+  <app-notes 
+    (notesChanged)="onNotesChanged($event)"
+    [selectedDate]="selectedDate">
+  </app-notes>
+
+</div>

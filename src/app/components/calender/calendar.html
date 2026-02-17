@@ -1,0 +1,26 @@
+<div class="header">
+  <button (click)="prevMonth()">◀</button>
+  <span>{{ currentDate | date: 'MMMM yyyy' }}</span>
+  <button (click)="nextMonth()">▶</button>
+</div>
+
+<div class="calendar">
+
+  <div class="day-name" *ngFor="let d of ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']">
+    {{ d }}
+  </div>
+
+  <div
+    class="day"
+    *ngFor="let day of calendarDays"
+    [class.empty]="!day"
+    [class.selected]="isSelected(day)"
+    [class.today]="isToday(day)"
+    (click)="selectDate(day)"
+  >
+    {{ day || '' }}
+     <span *ngIf="hasNotes(day)" class="note-dot"></span>
+  </div>
+
+</div>
+
