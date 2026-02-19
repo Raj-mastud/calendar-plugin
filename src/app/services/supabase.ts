@@ -6,7 +6,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 })
 export class SupabaseService {
 
-  private supabase: SupabaseClient;
+  public supabase: SupabaseClient;
 
   constructor() {
     this.supabase = createClient(
@@ -20,6 +20,8 @@ export class SupabaseService {
     note_date: string;
     title?: string;
     content: string;
+    reminder_at?:string | null;
+    notified?: boolean;
   }) {
     const { data, error } = await this.supabase
       .from('notes')

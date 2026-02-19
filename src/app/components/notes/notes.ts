@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SupabaseService } from '../../services/supabase';
 import { v4 as uuidv4 } from 'uuid';
+import { ReminderService } from '../../services/notification';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class Notes implements OnChanges ,OnInit{
 
   constructor(private supabaseService:SupabaseService,
               private ngzone:NgZone,
-              private cd: ChangeDetectorRef
+              private cd: ChangeDetectorRef,
+              private reminderService:ReminderService
 
   ){
 
@@ -37,9 +39,13 @@ export class Notes implements OnChanges ,OnInit{
   notes: { [key: string]: any[] } = {};  
   userId!: string;
   selectedNotes: any[] = [];
+  reminderTime: string | null = null;
+
 
   async ngOnInit() {
   await this.loadAllNotes();
+  this.reminderService.requestPermission();
+
 }
 
  ngOnChanges() {
@@ -71,7 +77,9 @@ async save() {
       user_id: this.userId,                 
       note_date: this.selectedDate,
       title: this.noteTitle,
-      content: this.noteContent
+      content: this.noteContent,
+      reminder_at: this.reminderTime ? new Date(this.reminderTime).toISOString() : null,
+      notified: false
     });
 
     // 3️⃣ Instantly update UI (add at bottom)
@@ -91,6 +99,7 @@ async save() {
     // 4️⃣ Clear input fields
     this.noteTitle = '';
     this.noteContent = '';
+    this.reminderTime= '';
 
     this.cd.detectChanges();
 

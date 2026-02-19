@@ -13,6 +13,9 @@
     [(ngModel)]="noteContent">
   </textarea>
 
+  <input placeholder="reminder Time" type="datetime-local"
+       [(ngModel)]="reminderTime" />
+
   <button (click)="save()">Save</button>
 
   <div class="existing-notes" *ngIf="selectedNotes.length > 0">
